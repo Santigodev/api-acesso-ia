@@ -46,5 +46,23 @@ namespace api_acesso_ia.Services
                 return Convert.ToBase64String(hash);
             }
         }
+
+        public async Task<LoginUsuario> BuscarPorEmailService(string email)
+        {
+            return await _loginRepository.BuscarPorEmail(email);
+        }
+
+        public async Task<bool> ResetarSenhaService(int idUsuario)
+        {
+            var usuarioLogin = await _loginRepository.BuscarPorId(idUsuario);
+            if (usuarioLogin == null) return false;
+
+            var novaSenha = usuarioLogin.Cpf;
+            usuarioLogin.Senha = CriptografarSenha(novaSenha);
+
+            await _loginRepository.Atualizar(usuarioLogin);
+
+            return true;
+        }
     }
 }

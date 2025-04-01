@@ -9,6 +9,8 @@ namespace api_acesso_ia.Services.Interfaces
         Task<LoginUsuario> CadastrarService(LoginUsuario dados);
         Task<bool> CpfJaCadastradoService(string cpf);
         string CriptografarSenha(string senha);
+        Task<LoginUsuario> BuscarPorEmailService(string email);
+        Task<bool> ResetarSenhaService(int idUsuario);
 
     }
 }

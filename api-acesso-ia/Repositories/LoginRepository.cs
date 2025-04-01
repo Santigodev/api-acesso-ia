@@ -31,5 +31,21 @@ namespace api_acesso_ia.Repositories
                         .AnyAsync(u => u.Cpf == cpf);
         }
 
+        public async Task<LoginUsuario> BuscarPorEmail(string email)
+        {
+            return await _context.LoginUsuarios.FirstOrDefaultAsync(u => u.Email == email);
+        }
+
+        public async Task<LoginUsuario> BuscarPorId(int id)
+        {
+            return await _context.LoginUsuarios.FindAsync(id);
+        }
+
+        public async Task Atualizar(LoginUsuario dados)
+        {
+            _context.LoginUsuarios.Update(dados);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

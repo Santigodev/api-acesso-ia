@@ -9,6 +9,9 @@ namespace api_acesso_ia.Repositories.Interfaces
      Task<LoginUsuario> Cadastrar(LoginUsuario dados);
 
      Task<bool> CpfJaCadastrado(string cpf);
+     Task<LoginUsuario> BuscarPorEmail(string email);
+     Task<LoginUsuario> BuscarPorId(int id);
+     Task Atualizar(LoginUsuario dados);
 
     }
 }
