@@ -54,9 +54,9 @@ namespace api_acesso_ia.Controllers
         }
 
         [HttpPut("resetar-senha/{idUsuario}")]
-        public async Task<IActionResult> ResetarSenha(int idUsuario)
+        public async Task<IActionResult> ResetarSenha(int idUsuario, [FromBody] ResetarSenhaRequest dados)
         {
-            var sucesso = await _loginService.ResetarSenhaService(idUsuario);
+            var sucesso = await _loginService.ResetarSenhaService(idUsuario, dados.NovaSenha);
 
             if (!sucesso)
                 return NotFound("Usuário não encontrado");
